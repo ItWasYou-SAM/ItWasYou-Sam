@@ -32,35 +32,6 @@ type GitHubSearchResponse = {
 
 type FilterType = "merged" | "open" | "closed";
 
-const SEARCH_QUERIES: Record<FilterType, string> = {
-  merged: "author:shivamsingh-007 type:pr is:merged",
-  open: "author:shivamsingh-007 type:pr is:open",
-  closed: "author:shivamsingh-007 type:pr is:closed is:unmerged",
-};
-
-function buildGraphQLQuery(searchQuery: string) {
-  return `query {
-    search(query: "${searchQuery}", type: ISSUE, first: 100) {
-      edges {
-        node {
-          ... on PullRequest {
-            id
-            title
-            url
-            repository {
-              nameWithOwner
-            }
-            state
-            createdAt
-            mergedAt
-            closedAt
-          }
-        }
-      }
-    }
-  }`;
-}
-
 export function OpenSourceContributions({ isFullPage = false }: { isFullPage?: boolean }) {
   const [prsByType, setPrsByType] = useState<Record<FilterType, PR[]>>({
     merged: [],
@@ -92,11 +63,10 @@ export function OpenSourceContributions({ isFullPage = false }: { isFullPage?: b
 
     // Fetch fresh data in background
     try {
-      const query = buildGraphQLQuery(SEARCH_QUERIES[type]);
       const response = await fetch("/api/github", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ query }),
+        body: JSON.stringify({ kind: "pullRequests", status: type }),
       });
 
       const data = (await response.json()) as GitHubSearchResponse;

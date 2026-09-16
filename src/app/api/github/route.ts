@@ -1,10 +1,57 @@
 import { NextResponse } from "next/server";
 
 type PublicContribution = { date: string; count: number };
+type PullRequestStatus = "merged" | "open" | "closed";
+
+const GITHUB_LOGIN = "shivamsingh-007";
+const PULL_REQUEST_SEARCH: Record<PullRequestStatus, string> = {
+  merged: `author:${GITHUB_LOGIN} type:pr is:merged`,
+  open: `author:${GITHUB_LOGIN} type:pr is:open`,
+  closed: `author:${GITHUB_LOGIN} type:pr is:closed is:unmerged`,
+};
+
+function contributionQuery() {
+  return `query PortfolioContributions {
+    user(login: "${GITHUB_LOGIN}") {
+      contributionsCollection {
+        contributionCalendar {
+          totalContributions
+          weeks {
+            contributionDays {
+              contributionCount
+              date
+            }
+          }
+        }
+      }
+    }
+  }`;
+}
+
+function pullRequestQuery(status: PullRequestStatus) {
+  return `query PortfolioPullRequests {
+    search(query: "${PULL_REQUEST_SEARCH[status]}", type: ISSUE, first: 100) {
+      edges {
+        node {
+          ... on PullRequest {
+            id
+            title
+            url
+            repository { nameWithOwner }
+            state
+            createdAt
+            mergedAt
+            closedAt
+          }
+        }
+      }
+    }
+  }`;
+}
 
 async function publicContributionFallback() {
   const response = await fetch(
-    "https://github-contributions-api.jogruber.de/v4/shivamsingh-007?y=last",
+    `https://github-contributions-api.jogruber.de/v4/${GITHUB_LOGIN}?y=last`,
     { next: { revalidate: 3600 } },
   );
   if (!response.ok) throw new Error("Contribution fallback unavailable");
@@ -47,9 +94,8 @@ async function publicContributionFallback() {
   };
 }
 
-async function publicPullRequestFallback(query: string) {
-  const match = query.match(/search\(query:\s*"([^"]+)"/);
-  const search = match?.[1] ?? "author:shivamsingh-007 type:pr is:merged";
+async function publicPullRequestFallback(status: PullRequestStatus) {
+  const search = PULL_REQUEST_SEARCH[status];
   const response = await fetch(
     `https://api.github.com/search/issues?q=${encodeURIComponent(search)}&per_page=100`,
     {
@@ -94,14 +140,23 @@ async function publicPullRequestFallback(query: string) {
 
 export async function POST(request: Request) {
   try {
-    const { query } = (await request.json()) as { query?: string };
-    if (!query) return NextResponse.json({ error: "Missing GraphQL query" }, { status: 400 });
+    const body = (await request.json()) as { kind?: unknown; status?: unknown };
+    const isContributionRequest = body.kind === "contributions";
+    const isPullRequest = body.kind === "pullRequests"
+      && (body.status === "merged" || body.status === "open" || body.status === "closed");
+
+    if (!isContributionRequest && !isPullRequest) {
+      return NextResponse.json({ error: "Unsupported GitHub activity request" }, { status: 400 });
+    }
+
+    const status = isPullRequest ? body.status as PullRequestStatus : null;
+    const query = isContributionRequest ? contributionQuery() : pullRequestQuery(status!);
 
     const token = process.env.GITHUB_TOKEN;
     if (!token) {
-      const data = query.includes("contributionsCollection")
+      const data = isContributionRequest
         ? await publicContributionFallback()
-        : await publicPullRequestFallback(query);
+        : await publicPullRequestFallback(status!);
       return NextResponse.json(data);
     }
 
@@ -112,6 +167,7 @@ export async function POST(request: Request) {
         Authorization: `Bearer ${token}`,
       },
       body: JSON.stringify({ query }),
+      next: { revalidate: isContributionRequest ? 3600 : 900 },
     });
 
     return NextResponse.json(await response.json(), { status: response.status });

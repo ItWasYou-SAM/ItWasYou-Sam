@@ -82,29 +82,11 @@ export function GithubGraph() {
         }
       }
 
-      const query = `
-        query {
-          user(login: "${USERNAME}") {
-            contributionsCollection {
-              contributionCalendar {
-                totalContributions
-                weeks {
-                  contributionDays {
-                    contributionCount
-                    date
-                  }
-                }
-              }
-            }
-          }
-        }
-      `;
-
       try {
         const response = await fetch("/api/github", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ query }),
+          body: JSON.stringify({ kind: "contributions" }),
         });
         if (!response.ok) throw new Error(`GitHub activity returned ${response.status}`);
 
