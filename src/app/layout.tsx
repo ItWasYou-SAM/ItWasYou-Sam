@@ -1,9 +1,8 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import { ThemeProvider } from "@/components/theme-provider";
+import "./terminal.css";
 import { SiteHeader } from "@/components/SiteHeader";
-import { PandaMascot } from "@/components/PandaMascot";
-import { InteractionFeedback } from "@/components/InteractionFeedback";
+import { TerminalFooter } from "@/components/TerminalFooter";
 
 export const metadata: Metadata = {
   title: {
@@ -12,7 +11,7 @@ export const metadata: Metadata = {
   },
   description:
     "AI engineer and open-source contributor building autonomous systems, agent infrastructure, and thoughtful developer tools.",
-  metadataBase: new URL("https://shivamsingh.dev"),
+  metadataBase: new URL("https://shivam-portfolio-lac-three.vercel.app"),
   openGraph: {
     title: "Shivam Singh — AI Engineer",
     description:
@@ -25,17 +24,10 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
   return (
     <html lang="en" suppressHydrationWarning>
       <body>
-        <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
-          <a className="skip-link" href="#main-content">Skip to content</a>
-          <div className="site-stage">
-            <div className="app-frame">
-              <SiteHeader />
-              {children}
-            </div>
-          </div>
-          <PandaMascot />
-          <InteractionFeedback />
-        </ThemeProvider>
+        <a className="skip-link" href="#main-content">Skip to content</a>
+        <SiteHeader />
+        {children}
+        <TerminalFooter />
       </body>
     </html>
   );

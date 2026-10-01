@@ -123,12 +123,12 @@ export function GithubGraph() {
     : `${totalContributions.toLocaleString()} contributions in the last year`;
 
   const monthMarkers = useMemo(() => {
-    return graphWeeks.reduce<Array<{ index: number; label: string; month: number }>>((markers, week, index) => {
+    const markers = graphWeeks.reduce<Array<{ index: number; label: string; month: number }>>((result, week, index) => {
       const firstDay = week.contributionDays[0];
-      if (!firstDay) return markers;
+      if (!firstDay) return result;
       const month = new Date(`${firstDay.date}T00:00:00`).getMonth();
-      if (markers.at(-1)?.month === month) return markers;
-      return [...markers, {
+      if (result.at(-1)?.month === month) return result;
+      return [...result, {
         index,
         month,
         label: new Intl.DateTimeFormat("en", { month: "short" }).format(
@@ -136,6 +136,13 @@ export function GithubGraph() {
         ),
       }];
     }, []);
+
+    const first = markers[0];
+    const last = markers.at(-1);
+    const next = markers[1];
+    const leadingMonthIsPartial = first?.index === 0 && next && next.index < 4;
+    const leadingMonthIsRepeated = first && last && first.month === last.month;
+    return leadingMonthIsPartial || leadingMonthIsRepeated ? markers.slice(1) : markers;
   }, [graphWeeks]);
 
   function showTooltip(day: ContributionDay, target: HTMLButtonElement) {
@@ -150,13 +157,7 @@ export function GithubGraph() {
 
   return (
     <section className="github-calendar" aria-labelledby="github-activity-title">
-      <div className="github-calendar__heading">
-        <div>
-          <p className="folio-kicker">Contribution calendar</p>
-          <h2 id="github-activity-title">GitHub Activity</h2>
-        </div>
-        <p className="github-calendar__total" aria-live="polite">{graphStatus}</p>
-      </div>
+      <h2 className="sr-only" id="github-activity-title">GitHub activity</h2>
 
       <p className="sr-only">
         Daily GitHub contributions for {USERNAME}. The visual grid is arranged by week from Sunday through Saturday.
@@ -202,10 +203,13 @@ export function GithubGraph() {
         </div>
       </div>
 
-      <div className="github-calendar__legend" aria-hidden="true">
-        <span>Less</span>
-        {[0, 1, 2, 3, 4].map((level) => <i className={`level-${level}`} key={level} />)}
-        <span>More</span>
+      <div className="github-calendar__footer">
+        <p className="github-calendar__total" aria-live="polite">{graphStatus}</p>
+        <div className="github-calendar__legend" aria-hidden="true">
+          <span>Less</span>
+          {[0, 1, 2, 3, 4].map((level) => <i className={`level-${level}`} key={level} />)}
+          <span>More</span>
+        </div>
       </div>
 
       {tooltip && (

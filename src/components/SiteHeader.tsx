@@ -1,32 +1,27 @@
+"use client";
+
 import Link from "next/link";
-import { ThemeToggle } from "@/components/theme-toggle";
+import { usePathname } from "next/navigation";
 
 const navItems = [
-  { href: "/experience", label: "Experience" },
-  { href: "/projects", label: "Projects" },
-  { href: "/github", label: "GitHub" },
-  { href: "/skills", label: "Skills" },
+  { href: "/projects", label: "projects" },
+  { href: "/blog", label: "blog" },
+  { href: "/gears", label: "gears" },
 ];
 
 export function SiteHeader() {
+  const pathname = usePathname();
+
   return (
-    <header className="site-header">
-      <div className="site-header__inner">
-        <Link className="wordmark" href="/" aria-label="Shivam Singh, home">
-          <span className="wordmark__mark" aria-hidden="true">SS</span>
-          <span className="wordmark__name">Shivam Singh</span>
-        </Link>
-
-        <nav className="desktop-nav" aria-label="Primary navigation">
+    <header className="terminal-header">
+      <nav className="terminal-shell terminal-nav" aria-label="Primary navigation">
+        <Link className="terminal-wordmark" href="/" aria-label="Shivam Singh, home">shivam</Link>
+        <div className="terminal-nav__links">
           {navItems.map((item) => (
-            <Link href={item.href} key={item.href}>{item.label}</Link>
+            <Link className={pathname === item.href || pathname.startsWith(`${item.href}/`) ? "is-active" : undefined} href={item.href} key={item.href}>{item.label}</Link>
           ))}
-        </nav>
-
-        <div className="header-actions">
-          <ThemeToggle />
         </div>
-      </div>
+      </nav>
     </header>
   );
 }
