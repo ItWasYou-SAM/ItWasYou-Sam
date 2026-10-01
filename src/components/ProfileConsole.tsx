@@ -58,9 +58,9 @@ export function ProfileConsole() {
 
           <div className="social-row" aria-label="Social links">
             <a href="https://github.com/shivamsingh-007" target="_blank" rel="noreferrer" aria-label="GitHub"><SiGithub /></a>
-            <a href="https://www.linkedin.com/in/shivam-007-singh" target="_blank" rel="noreferrer" aria-label="LinkedIn"><FaLinkedinIn /></a>
+            <a href="https://www.linkedin.com/in/shivam-007-singh/" target="_blank" rel="noreferrer" aria-label="LinkedIn"><FaLinkedinIn /></a>
             <a href="mailto:shivam.singh.koyad2006@gmail.com" aria-label="Email"><Mail /></a>
-            <a href="https://x.com/spidershivam" target="_blank" rel="noreferrer" aria-label="X / Twitter"><SiX /></a>
+            <a href="https://x.com/Shivam_2006_ss" target="_blank" rel="noreferrer" aria-label="X / Twitter"><SiX /></a>
           </div>
 
           <div className="profile-actions">
