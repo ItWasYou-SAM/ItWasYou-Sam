@@ -1,108 +1,57 @@
-# Shivam Singh — Portfolio
+<table width="100%">
+  <tr>
+    <td align="left">
+      <strong>AI Engineer.</strong> Learning, Building, and Shipping.
+    </td>
+    <td align="right">
+      <a href="https://github.com/shivamsingh-007">GitHub</a> ·
+      <a href="https://linkedin.com/in/shivam-singh-a58364384">LinkedIn</a> ·
+      <a href="mailto:shivam.singh.koyad007@gmail.com">Email</a>
+    </td>
+  </tr>
+</table>
+<p>
+  <strong>Tech Stack ⚙️</strong>
+</p>
 
-A minimal, fast, and interactive developer portfolio built with **Next.js 16**, **React 19**, **Tailwind CSS v4**, and **TypeScript**.
+<p>
+  <img src="https://cdn.simpleicons.org/python/3776AB" alt="Python" width="28" height="28" />
+  &nbsp;
+  <img src="https://cdn.simpleicons.org/cplusplus/00599C" alt="C++" width="28" height="28" />
+  &nbsp;
+  <img src="https://cdn.simpleicons.org/typescript/3178C6" alt="TypeScript" width="28" height="28" />
+  &nbsp;
+  <img src="https://cdn.simpleicons.org/nextdotjs/FFFFFF" alt="Next.js" width="28" height="28" />
+  &nbsp;
+  <img src="https://cdn.simpleicons.org/fastapi/009688" alt="FastAPI" width="28" height="28" />
+  &nbsp;
+  <img src="https://cdn.simpleicons.org/nodedotjs/5FA04E" alt="Node.js" width="28" height="28" />
+  &nbsp;
+  <img src="https://cdn.simpleicons.org/postgresql/4169E1" alt="PostgreSQL" width="28" height="28" />
+  &nbsp;
+  <img src="https://cdn.simpleicons.org/redis/FF4438" alt="Redis" width="28" height="28" />
+  &nbsp;
+  <img src="https://cdn.simpleicons.org/docker/2496ED" alt="Docker" width="28" height="28" />
+  &nbsp;
+  <img src="https://cdn.simpleicons.org/googlecloud/4285F4" alt="Google Cloud" width="28" height="28" />
+  &nbsp;
+  <img src="https://cdn.simpleicons.org/linux/FCC624" alt="Linux" width="28" height="28" />
+  &nbsp;
+  <img src="https://api.iconify.design/simple-icons:openai.svg?color=%23FFFFFF" alt="OpenAI" width="28" height="28" />
+  &nbsp;
+  <img src="https://cdn.simpleicons.org/googlegemini/8E75B2" alt="Gemini" width="28" height="28" />
+  &nbsp;
+  <img src="https://cdn.simpleicons.org/anthropic/D97757" alt="Claude" width="28" height="28" />
+  &nbsp;
+  <img src="https://cdn.simpleicons.org/langchain/2B6F4E" alt="LangChain" width="28" height="28" />
+  &nbsp;
+  <img src="https://cdn.simpleicons.org/huggingface/FFD21E" alt="Hugging Face" width="28" height="28" />
+  &nbsp;
+  <img src="https://cdn.simpleicons.org/pytorch/EE4C2C" alt="PyTorch" width="28" height="28" />
+  &nbsp;
+  <img src="https://cdn.simpleicons.org/tensorflow/FF6F00" alt="TensorFlow" width="28" height="28" />
+  &nbsp;
 
-It showcases my work, experience, open-source contributions, skills, and writing — with a dark/light theme, smooth motion, and a command palette for quick navigation.
+</p>
 
----
-
-## Tech Stack
-
-- **Framework:** [Next.js](https://nextjs.org/) 16 (App Router)
-- **Library:** [React](https://react.dev/) 19
-- **Styling:** [Tailwind CSS](https://tailwindcss.com/) v4
-- **Language:** [TypeScript](https://www.typescriptlang.org/)
-- **Animation:** [Framer Motion](https://www.framer.com/motion/), [GSAP](https://greensock.com/gsap/)
-- **UI Components:** [shadcn/ui](https://ui.shadcn.com/) + [Radix UI](https://www.radix-ui.com/)
-- **Icons:** [Lucide React](https://lucide.dev/), [React Icons](https://react-icons.github.io/react-icons/)
-- **Deployment:** [Vercel](https://vercel.com/) with Analytics & Speed Insights
-
----
-
-## Features
-
-- Responsive, grid-based layout with blueprint-style micro-details
-- Dark and light mode with system preference detection
-- Command palette (`Cmd/Ctrl + K`) for quick navigation
-- Interactive GitHub contribution graph
-- Project showcase with detail pages
-- Experience timeline
-- Open-source contributions section
-- Skills and technologies grid
-- Blog listing
-- Contact and resume pages
-- Sound-engineered micro-interactions
-
----
-
-## Getting Started
-
-### Prerequisites
-
-- [Node.js](https://nodejs.org/) 20 or later
-- npm / yarn / pnpm / bun
-
-### Install dependencies
-
-```bash
-npm install
-```
-
-### Run the development server
-
-```bash
-npm run dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) in your browser.
-
-### Build for production
-
-```bash
-npm run build
-```
-
-### Start the production server
-
-```bash
-npm start
-```
-
-### Lint
-
-```bash
-npm run lint
-```
-
----
-
-## Project Structure
-
-```text
-Portfolio-v2-
-├── src/
-│   ├── app/                 # Next.js App Router pages
-│   ├── components/          # React components & UI primitives
-│   ├── data/                # Projects and blogs data
-│   ├── hooks/               # Custom React hooks
-│   └── lib/                 # Utility functions and sound engine
-├── public/                  # Static assets
-├── next.config.ts           # Next.js configuration
-├── tailwind.config.ts       # Tailwind CSS configuration
-├── tsconfig.json            # TypeScript configuration
-└── package.json
-```
-
----
-
-## Deployment
-
-This site is optimized for deployment on [Vercel](https://vercel.com/). Connect your GitHub repository to Vercel and deploy with zero configuration.
-
-For other platforms, use the static or Node.js output mode configured in `next.config.ts`.
-
----
-
-
-
-Built with purpose, precision, and a little bit of chaos.
+<!-- Proudly created with GPRM ( https://gprm.itsvg.in ) -->
