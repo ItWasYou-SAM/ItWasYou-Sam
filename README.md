@@ -36,8 +36,6 @@
   &nbsp;
   <img src="https://cdn.simpleicons.org/linux/FCC624" alt="Linux" width="28" height="28" />
   &nbsp;
-  <img src="https://api.iconify.design/simple-icons:openai.svg?color=%23FFFFFF" alt="OpenAI" width="28" height="28" />
-  &nbsp;
   <img src="https://cdn.simpleicons.org/googlegemini/8E75B2" alt="Gemini" width="28" height="28" />
   &nbsp;
   <img src="https://cdn.simpleicons.org/anthropic/D97757" alt="Claude" width="28" height="28" />
@@ -48,9 +46,12 @@
   &nbsp;
   <img src="https://cdn.simpleicons.org/pytorch/EE4C2C" alt="PyTorch" width="28" height="28" />
   &nbsp;
-  <img src="https://cdn.simpleicons.org/tensorflow/FF6F00" alt="TensorFlow" width="28" height="28" />
-  &nbsp;
 
 </p>
+
+<p align="right">
+  <img src="https://count.getloli.com/@ItWasYou-Sam?name=sam&theme=rule34&padding=7&offset=0&align=top&scale=1&pixelated=1&darkmode=auto">
+</p>
+
 
 <!-- Proudly created with GPRM ( https://gprm.itsvg.in ) -->
