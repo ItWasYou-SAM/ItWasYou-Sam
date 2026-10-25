@@ -4,7 +4,6 @@
       <strong>AI Engineer.</strong> Learning, Building, and Shipping.
     </td>
     <td align="right">
-      <a href="https://github.com/ItWasYou-Sam">GitHub</a> |
       <a href="mailto:shivam.singh.koyad007@gmail.com">Email</a>
     </td>
   </tr>
